@@ -1,0 +1,70 @@
+<div class="main-wrapper">
+  <div class="card">
+    <h1>Angular Material Form</h1>
+
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      
+      <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Email Address*</mat-label>
+        <input matInput formControlName="email">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Password*</mat-label>
+        <input matInput type="password" formControlName="password">
+      </mat-form-field>
+
+      <div class="label-group">
+        <label style="display: block; margin-bottom: 8px; font-weight: 600;">Gender</label>
+        <mat-radio-group formControlName="gender" style="display: flex; gap: 20px;">
+          <mat-radio-button value="male">Male</mat-radio-button>
+          <mat-radio-button value="female">Female</mat-radio-button>
+          <mat-radio-button value="other">Other</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <mat-form-field appearance="fill" style="margin-top: 15px;">
+        <mat-label>Address</mat-label>
+        <input matInput formControlName="address">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Birth Date*</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="birthDate">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Department</mat-label>
+        <mat-select formControlName="department">
+          <mat-option value="it">IT Department</mat-option>
+          <mat-option value="hr">Human Resources</mat-option>
+          <mat-option value="finance">Finance</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="label-group">
+        <label style="font-weight: 600;">Skill Level: {{registrationForm.value.skillLevel}}</label>
+        <mat-slider min="1" max="10" step="1" discrete class="pink-slider">
+          <input matSliderThumb formControlName="skillLevel">
+        </mat-slider>
+      </div>
+
+      <div class="extra-controls">
+        <mat-checkbox formControlName="agreeTerms" color="primary">I agree to the terms</mat-checkbox>
+        <mat-slide-toggle formControlName="notifications" color="primary">Enable Notifications</mat-slide-toggle>
+      </div>
+
+      <button mat-flat-button class="btn" type="submit" [disabled]="registrationForm.invalid">
+        SUBMIT FORM
+      </button>
+
+    </form>
+  </div>
+</div>
